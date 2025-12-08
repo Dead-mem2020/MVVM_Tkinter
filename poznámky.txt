@@ -1,0 +1,6 @@
+View Model - komunikátor, co se děje
+View - pohled (GUI)
+Model - databáze dat
+
+tkinter:
+    
