@@ -1,0 +1,11 @@
+[
+    {
+        "id": 0,
+        "brand": "Škoda",
+        "Model": "Octavia",
+        "year": 2020,
+        "price": 25000,
+        "color": "Červená",
+        "mileage": 0
+    }
+]

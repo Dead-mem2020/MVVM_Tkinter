@@ -15,12 +15,13 @@ class CarTable(ttk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
         self._create_widgets()
-        
+
     def _create_widgets(self):
         """Vytvoří tabulku a scrollbar"""
         style = ttk.Style()
-        style.configure("Treeview", rowheight=30, font=("Seguo UI", 10)) # řádka v tabulce
-        style.configure("Treeview.Heading", font=("Segue UI", 10, "bold")) # záhlaví #tupple
+        style.configure("Treeview", rowheight=30, font=("Segoe UI", 10)) # řádka v tabulce
+        style.configure("Treeview.Heading", font=("Segoe UI", 10, "bold")) # záhlaví #tupple
+
 
         # Vytváření tabulky
         self.tree = ttk.Treeview(
@@ -41,6 +42,7 @@ class CarTable(ttk.Frame):
         self.tree.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
         self.scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
+        #self._configure_columns() # Ňechápem
 
     def _configure_columns(self):
         """Nastavení hlavičky sloupců a jejich šířky"""
@@ -53,3 +55,21 @@ class CarTable(ttk.Frame):
         for col in self.COLUMNS:
             self.tree.heading(col, text=self.COLUMNS_NAME[col])
             self.tree.column(col, width=column_width[col], anchor=tk.CENTER)
+
+        
+    def refresh(self, cars_data: list):
+        """ Obnoví data v tabulce """
+
+        for item in self.tree.get_children():
+            self.tree.delete(item)
+
+        for car in self.tree.get_children():
+            values = (
+                car("id"),
+                car("brand"),
+                car("model"),
+                car("year"),
+                car("price"),
+                car("mileage"),
+            )
+            self.tree.insert("", tk.END, value = values)

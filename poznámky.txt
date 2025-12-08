@@ -2,5 +2,15 @@ View Model - komunikátor, co se děje
 View - pohled (GUI)
 Model - databáze dat
 
+tupple - uloží více předmětů v jedné proměnné pomocí () | něco jako pole
+
+MVVM - architektura
+
 tkinter:
+    nevím, co dělám
+
+JSON soubor:
+    Obalovací soubor, struktura dat
+    Tímhle se posílají data z Back-endu do Front-endu
+    Možná ho nahradí jiný soubor
     

@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from ui.car_table import CarTable
+import json
 
 class MainWindow():
     """Hlavní okno aplikace"""
@@ -9,11 +10,12 @@ class MainWindow():
         self.root = tk.Tk()
         self._configure_window()
         self._create_widgets()
+        self._load_data()
 
     def _configure_window(self):
         """konfigurace hlavního okna"""
         self.root.title("🚗 Správa aut")
-        self.root.geometry("900x500")
+        self.root.geometry("900x650")
         self.root.minsize(600, 400)
 
 
@@ -27,7 +29,7 @@ class MainWindow():
             text = "🚘 Správa autobazaru 🚘",
             font = ("Segoe UI", 18, "bold"),
         )
-        title.pack(pady=(0, 24))
+        title.pack(pady=(0, 24)) # odsazení od dolní části
 
         # tabulka aut
         table_frame = ttk.LabelFrame(main_frame, text = "Seznam_aut", padding = 10)
@@ -40,9 +42,26 @@ class MainWindow():
         info = ttk.Label(
             main_frame,
             text = ("Vyberte auto pro zobrazení detailů nebo úpravu"),
-            font=("Seguo UI", 10)
+            font=("Segoe UI", 10)
         )
         info.pack(pady=(8, 0)) # odsazení od horní části
 
+
     def run(self):
         self.root.mainloop()
+
+    def _load_data(self):
+        """"""
+        try:
+            with open("data/cars.json", "r", encoding="utf=8") as file:
+                cars_data = json.load(file)
+            
+            self.table.refresh(cars_data)
+
+            total_value = sum(car("price") for car in cars_data)
+            self.stats_label.configure(
+                text = f"Počet vozidel: {len(cars_data)} | Celková hodnota {total_value} Kč"
+            )
+
+        except FileNotFoundError:
+            print("Soubor nelze najít")
