@@ -3,10 +3,9 @@ from tkinter import ttk
 
 class CarTable(ttk.Frame):
     COLUMNS = ("id", "brand", "model", "year", "price", "colour", "mileage")
-    COLUMNS_NAME = {
+    COLUMNS_NAME = { #Python - klíč/key
         "id": "ID",
         "brand": "Značka",
-        "model": "Model",
         "year": "Rok",
         "price": "Cena (Kč)",
         "colour": "Barva",
@@ -18,10 +17,11 @@ class CarTable(ttk.Frame):
         self._create_widgets()
 
     def _create_widgets(self):
-        """ Vytvoří tabulku a scrollbar """
-        style = ttk.Style() # https://docs.python.org/3/library/tkinter.ttk.html
-        style.configure("Treeview", rowheight=30, font=("Segoe UI", 10)) # Řádka v tabulce
-        style.configure("Treeview.Heading", font=("Segoe UI", 10, "bold")) # Záhlavý
+        """Vytvoří tabulku a scrollbar"""
+        style = ttk.Style()
+        style.configure("Treeview", rowheight=30, font=("Segoe UI", 10)) # řádka v tabulce
+        style.configure("Treeview.Heading", font=("Segoe UI", 10, "bold")) # záhlaví #tupple
+
 
         # Vytváření tabulky
         self.tree = ttk.Treeview(
@@ -29,7 +29,8 @@ class CarTable(ttk.Frame):
             columns=self.COLUMNS,
             show="headings",
             selectmode="browse"
-        )
+            )
+        
 
         #Scrollbar
         self.scrollbar = ttk.Scrollbar(
@@ -38,38 +39,37 @@ class CarTable(ttk.Frame):
             command=self.tree.yview
         )
 
-        # Rozmístění
         self.tree.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
         self.scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
-        self._configure_columns()
+        #self._configure_columns() # Ňechápem
 
     def _configure_columns(self):
-        """ Nastavení hlavičky sloupců a jejich šířky """
-        column_widths = {
-            "id": 50, "brand": 100, "model": 100,
+        """Nastavení hlavičky sloupců a jejich šířky"""
+        column_width = {
+            "id": 50, "brand": 100, "model":100, 
             "year": 70, "price": 100, "colour": 100, 
-            "mileage": 100}
-        
+            "mileage": 100
+        }
+
         for col in self.COLUMNS:
             self.tree.heading(col, text=self.COLUMNS_NAME[col])
-            self.tree.column(col, width=column_widths[col], anchor=tk.CENTER)
+            self.tree.column(col, width=column_width[col], anchor=tk.CENTER)
 
-
+        
     def refresh(self, cars_data: list):
-        """ Obnoví data v tabulce"""
+        """ Obnoví data v tabulce """
 
         for item in self.tree.get_children():
             self.tree.delete(item)
 
-        for car in cars_data:  # <-- OPRAVA: bylo "self.tree.get_children()"
+        for car in self.tree.get_children():
             values = (
-                car["id"],
-                car["brand"],
-                car["model"],
-                car["year"],
-                car["price"],
-                car["colour"],
-                car["mileage"]
+                car("id"),
+                car("brand"),
+                car("model"),
+                car("year"),
+                car("price"),
+                car("mileage"),
             )
-            self.tree.insert("", tk.END, values=values)
+            self.tree.insert("", tk.END, value = values)
