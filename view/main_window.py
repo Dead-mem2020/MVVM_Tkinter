@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from ui.car_table import CarTable
-from viewmodels.AddCarDialogue import AddCarDialogue
+from viewmodels.AddCarDialogue2 import AddCarDialogue
 # Předpokládáme: from ui.car_table import CarTable
 # Předpokládáme: from ui.add_car_dialog import AddCarDialog
 
@@ -15,7 +15,7 @@ class MainWindow:
         self._create_widgets()
     
     def _configure_window(self):
-        self.root.title("🚗 Správa Aut (Dočasná relace)")
+        self.root.title("🚗 Správa Aut")
         self.root.geometry("900x550")
     
     def _create_widgets(self):

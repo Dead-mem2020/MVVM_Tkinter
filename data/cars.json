@@ -1,11 +1,20 @@
 [
     {
-        "id": 0,
         "brand": "Škoda",
         "model": "Octavia",
-        "year": 2020,
-        "price": 25000,
-        "colour": "Červená",
-        "mileage": 0
+        "year": 2017,
+        "price": 150000,
+        "colour": "červená",
+        "mileage": 0,
+        "id": 8
+    },
+    {
+        "brand": "Škoda",
+        "model": "Octavia",
+        "year": 2019,
+        "price": 200000,
+        "colour": "zelená",
+        "mileage": 0,
+        "id": 9
     }
 ]

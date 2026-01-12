@@ -1,4 +1,4 @@
-from view.main_window import MainWindow
+from view.main_window4 import MainWindow
 
 
 def main():

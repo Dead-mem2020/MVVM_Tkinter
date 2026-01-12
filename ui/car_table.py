@@ -73,3 +73,13 @@ class CarTable(ttk.Frame):
                 car["mileage"]
             )
             self.tree.insert("", tk.END, values=values)
+
+    def get_selected_car_id(self):
+        """ Vrátí ID vybraného auta v tabulce, nebo None, pokud není nic vybráno """
+        selected_item = self.tree.selection() # Získá označený řádek
+        if not selected_item:
+            return None
+        
+        # Získáme hodnoty z řádku (ID je v prvním sloupci - index 0)
+        values = self.tree.item(selected_item)['values']
+        return values[0] # Vracíme ID

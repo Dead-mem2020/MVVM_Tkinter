@@ -14,3 +14,5 @@ JSON soubor:
     Tímhle se posílají data z Back-endu do Front-endu
     Možná ho nahradí jiný soubor
     
+    
+Validace, možnost koupit auto (po koupi odsranit z databáze), možnost úpravy dat
